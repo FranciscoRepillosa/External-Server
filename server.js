@@ -7,12 +7,8 @@ app.use(cors())
 app.use(express.json())
 
 const userRoutes = require("./user/routes.config");
-//const clientSideScriptsRoutes = require("./clientSideScripts/routes.confing");
-//const fakeServerRoutes = require("./fake/routes.confing");
 
 app.use("/user", userRoutes);
-//app.use("/clientSideScript", clientSideScriptsRoutes);
-//app.use("/fakeServer", fakeServerRoutes);
 
 app.use("*", (req, res, next) => {
   console.log("* route", req.originalUrl);
