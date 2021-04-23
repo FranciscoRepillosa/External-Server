@@ -1,11 +1,17 @@
 const User = require("../models/user.models");
 const axios = require('axios');
-const fs = require("fs")
+const fs = require("fs");
+var CryptoJS = require("crypto-js");
 
 exports.createUser = async (req, res) => {
     try {
+        /*
         console.log(req.body);
-    //encrypt password
+        let bytes = CryptoJS.AES.decrypt(req.body.hash, "Secret Passphrase");
+        var originalText = bytes.toString(CryptoJS.enc.Utf8);
+ 
+        console.log(originalText)
+        */
     const newUuser = await User.create(req.body);
 
     res.status(201).json({
