@@ -7,6 +7,14 @@ router
     .route("/")
     .get(userController.getAllusers)
     .post(userController.createUser)
+
+router
+    .route("/list")
+    .get(userController.getUsersList)
+
+router
+    .route("/:userEmail")
+    .patch(userController.changeStatus)
 /*
 router.post("/", userController.createUser);
 

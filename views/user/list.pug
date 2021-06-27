@@ -1,0 +1,45 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(http-equiv='X-UA-Compatible' content='IE=edge')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  // CSS only
+  link(href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x' crossorigin='anonymous')
+  link(href='https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap' rel='stylesheet')
+  link(href='/styles/list.css' rel='stylesheet')
+  title Document
+table.table
+  thead
+    tr
+      th(scope='col') #
+      th(scope='col') email
+      th(scope='col') Status
+      th(scope='col') Actions
+      th(scope='col') Change Status
+  tbody
+  each user, index in users
+        if user.disabled === "true"
+            tr
+                th(scope='row')= index
+                td= user.email
+                td(hidden="")= user.disabled
+                td(style="background-color:rgb(255 0 0 / 10%)") disabled
+                td
+                    img.icons(src="/imgs/pencil.svg", alt="", srcset="")
+                    img.icons(src="/imgs/clear.svg", alt="", srcset="")
+                td
+                    button.changeStatus.btn.btn-light(type='button') Change
+        else 
+            tr
+                th(scope='row')= index
+                td= user.email
+                td(hidden="")= user.disabled
+                td(style="background-color:rgb(9 255 0 / 10%)") enabled
+                td
+                    img.icons(src="/imgs/pencil.svg", alt="", srcset="")
+                    img.icons(src="/imgs/clear.svg", alt="", srcset="")
+                td
+                    button.changeStatus.btn.btn-light(type='button') Change
+img#addUser.plus-icon(src="/imgs/circulo-plus.svg", alt="add user", title="create users" )
+
+script(src='/scripts/list.js')

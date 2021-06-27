@@ -6,6 +6,11 @@ const dotenv = require("dotenv");
 app.use(cors())
 app.use(express.json())
 
+app.set('views', './views')
+app.set('view engine', 'pug')
+
+app.use(express.static('public'))
+
 const userRoutes = require("./user/routes.config");
 
 app.use("/user", userRoutes);

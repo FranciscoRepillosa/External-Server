@@ -49,13 +49,34 @@ exports.getAllusers = async (req, res) => {
     try {
         
       const users = await User.find();
-  
-      res.status(200).json({
+
+      const encryptedUsers = CryptoJS.AES.encrypt(JSON.stringify(users), "secret key 123").toString();
+      
+    res.status(200).json({
       status: "success",
       results: users.length,
-      data : users
+      data : encryptedUsers
     })
     } catch (error) {
+        console.log(error);
         res.send(error);
     }
+}
+
+exports.getUsersList = async (req, res) => {
+
+    const users = await  User.find();
+
+    res.render("user/list", { users})
+}
+
+exports.changeStatus = async (req, res) => {
+    console.log(req.params);
+    console.log(req.body);
+    const updatedUser = await  User.updateOne({email: req.params.userEmail }, req.body);
+    console.log(updatedUser);
+    res.status(200).json({
+        status: "success",
+        updatedUser
+      })
 }
